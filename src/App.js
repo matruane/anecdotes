@@ -17,10 +17,22 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
 
+  const [votes, setVotes] = useState(Array(7).fill(0))
+
+  const handleVote = (idx) => {
+    const newVotes = [...votes]
+    newVotes[idx] += 1
+    setVotes(newVotes)
+  }
+
+
   return (
     <div>
       {anecdotes[selected]}
       <br />
+      has {votes[selected]} votes
+      <br />
+      <Button handleClick={() => handleVote(selected)} text="Vote" />
       <Button handleClick={() => setSelected(Math.floor(Math.random() * 7))} text="Next anecdote" />
     </div>
   )
